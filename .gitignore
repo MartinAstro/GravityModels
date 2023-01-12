@@ -1,3 +1,4 @@
-.venv/*
-.eggs/*
+.venv
+.eggs
 GravityModels.egg-info
+**/__pycache__
