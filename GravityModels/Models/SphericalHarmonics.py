@@ -3,9 +3,9 @@ import os, sys
 import numpy as np
 import json
 from numba import njit
-from GravNN.GravityModels.GravityModelBase import GravityModelBase
-from GravNN.GravityModels.PinesAlgorithm import compute_acc_parallel, compute_n_matrices
-from GravNN.Support.transformations import cart2sph
+from GravityModels.GravityModels.GravityModelBase import GravityModelBase
+from GravityModels.GravityModels.PinesAlgorithm import compute_acc_parallel, compute_n_matrices
+from GravityModels.Support.transformations import cart2sph
 from scipy.special import lpmn
 
 
@@ -254,8 +254,8 @@ class SphericalHarmonics(GravityModelBase):
 
 
 if __name__ == "__main__":
-    from GravNN.CelestialBodies.Planets import Earth
-    from GravNN.Trajectories import FibonacciDist
+    from GravityModels.CelestialBodies.Planets import Earth
+    from GravityModels.Trajectories import FibonacciDist
 
     planet = Earth()
     # traj = FibonacciDist(planet, planet.radius, 1000)

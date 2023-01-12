@@ -1,6 +1,6 @@
 import os
 import pooch
-import GravNN
+import GravityModels
 import numpy as np
 
 
@@ -35,14 +35,14 @@ class Bennu:
             url='http://www.asteroidmission.org/wp-content/uploads/2019/01/Bennu-Radar.obj',
             known_hash='0aa41b9ce4c366bb72120e872f5a604ce5766063e6744e76bd4a68ed0f1d4f75',
             fname="Bennu-Radar.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Bennu/"
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Bennu/"
         )
 
         self.obj_200k = pooch.retrieve(
             url='http://www.asteroidmission.org/wp-content/uploads/2019/03/Bennu_v20_200k.obj',
             known_hash="afbf196bf570d84804e9dd5935425d60eee2884ea58b02cd4d1ef45d215f67de",
             fname="Bennu_shape_200700k_raw.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Bennu/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Bennu/",
             processor=remove_whitespace
         )
 
@@ -136,7 +136,7 @@ class Bennu:
             url='https://figshare.com/ndownloader/files/21927342',
             known_hash="d002eb615caab83665d991ecaa43480b85569e7f830f4aac9b2824d04d7b0dea",
             fname="Bennu_sh_10_raw.txt",
-            path=os.path.dirname(GravNN.__file__) + "/Files/GravityModels/Bennu/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/GravityModels/Bennu/",
             processor=format_sh
         )
 
@@ -145,7 +145,7 @@ class Bennu:
             url='https://figshare.com/ndownloader/files/21927351',
             known_hash="857cd603f9a9b42f60562ec19b60ac095a16005c3f1b5bd85b16436c65e5e35b",
             fname="Bennu_sh_shape_16_raw.txt",
-            path=os.path.dirname(GravNN.__file__) + "/Files/GravityModels/Bennu/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/GravityModels/Bennu/",
             processor=format_sh
         )
 
@@ -188,7 +188,7 @@ class Eros:
             url='http://sbnarchive.psi.edu/pds3/near/NEAR_A_5_COLLECTED_MODELS_V1_0/data/msi/eros007790.tab',
             known_hash="183df4df96ea6c66dee7a4b2368dc706d81c4942fbfb043198260f5406233ff0",
             fname="eros_shape_7790_raw.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Eros/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Eros/",
             processor=reindex_faces
         )
 
@@ -196,7 +196,7 @@ class Eros:
             url='http://sbnarchive.psi.edu/pds3/near/NEAR_A_5_COLLECTED_MODELS_V1_0/data/msi/eros089398.tab',
             known_hash="15184730d0a79db5d4de600fed7c758b3beb148f50d4d0e0acbebe7a1f73d82f",
             fname="eros_shape_89398_raw.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Eros/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Eros/",
             processor=reindex_faces
         )
 
@@ -204,7 +204,7 @@ class Eros:
             url='http://sbnarchive.psi.edu/pds3/near/NEAR_A_5_COLLECTED_MODELS_V1_0/data/msi/eros200700.tab',
             known_hash="54c7bc73376022876a7522e002355a4046777d346fe99270c230fee92cea881f",
             fname="eros_shape_200700_raw.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Eros/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Eros/",
             processor=reindex_faces
         )
 
@@ -223,7 +223,7 @@ class Eros:
             url='http://sbnarchive.psi.edu/pds3/near/NEAR_A_5_COLLECTED_MODELS_V1_0/data/rss/n15acoeff.tab',
             known_hash="e08068e2ea5167bee685ae00a8596144964e1da71ab16c51f2328f642d0be90e",
             fname="eros_sh_N15A_raw.txt",
-            path=os.path.dirname(GravNN.__file__) + "/Files/GravityModels/Eros/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/GravityModels/Eros/",
             processor=format_sh
         )
 
@@ -250,14 +250,14 @@ class Toutatis:
             url='https://3d-asteroids.space/data/asteroids/models/t/4179_Toutatis.obj',
             known_hash="e79c13b4b7b427e3c4f90f656a257316cc1a75bc8edee36db0236129984a7f5a",
             fname="Toutatis-radar-lowres.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Toutatis/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Toutatis/",
         )
 
         self.obj_20k = pooch.retrieve(
             url='https://3d-asteroids.space/data/asteroids/models/t/4179_Toutatis_hires.obj',
             known_hash="95a8dfc6aa1a75f5b96ea334d132785ec20130ce746903430e2d605bee8ed479",
             fname="Toutatis-radar-highres.obj",
-            path=os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Toutatis/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Toutatis/",
         )
 
         # Scheeres Paper

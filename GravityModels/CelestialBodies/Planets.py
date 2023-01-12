@@ -1,7 +1,7 @@
 import os
 import re
 import pooch
-import GravNN
+import GravityModels
 import numpy as np
 from zipfile import ZipFile
 class Earth:
@@ -65,7 +65,7 @@ class Earth:
             url='https://earth-info.nga.mil/php/download.php?file=egm-96spherical',
             known_hash="1f21ab8151c1b9fe25f483a4f6b78acdbf5306daf923725017b83d87a5f33472",
             fname="EGM96_raw.zip",
-            path=os.path.dirname(GravNN.__file__) + "/Files/GravityModels/Earth/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/GravityModels/Earth/",
             processor=format_EGM96_sh
         )
 
@@ -73,11 +73,11 @@ class Earth:
             url='https://earth-info.nga.mil/php/download.php?file=egm-08spherical',
             known_hash='65a9072f337f156e8cbd76ffd773f536e6fb0de18697ea6726ecdb790fac0fbd',
             fname="EGM2008_raw.zip",
-            path=os.path.dirname(GravNN.__file__) + "/Files/GravityModels/Earth/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/GravityModels/Earth/",
             processor=format_EGM2008_sh
         )
 
-        self.shape_model = os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Earth/Earth.obj"
+        self.shape_model = os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Earth/Earth.obj"
 
         # Backwards compatability
         # self.sh_file = self.EGM96
@@ -110,9 +110,9 @@ class Moon:
             url='https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/gggrx_1200a_sha.tab',
             known_hash="fa04c3dce9376948ad243f3df74144e2602f12d183ea4d179604ed0a79da7ded",
             fname="GRGM_1200_raw.txt",
-            path=os.path.dirname(GravNN.__file__) + "/Files/GravityModels/Moon/",
+            path=os.path.dirname(GravityModels.__file__) + "/Files/GravityModels/Moon/",
             processor=format_sh
         )
         
         self.sh_file = self.GRGM1200
-        self.shape_model = os.path.dirname(GravNN.__file__) + "/Files/ShapeModels/Moon/Moon.obj"
+        self.shape_model = os.path.dirname(GravityModels.__file__) + "/Files/ShapeModels/Moon/Moon.obj"

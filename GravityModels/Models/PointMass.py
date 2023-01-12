@@ -1,9 +1,9 @@
 import os
 
 import numpy as np
-from GravNN.GravityModels.GravityModelBase import GravityModelBase
-from GravNN.CelestialBodies.Planets import Earth
-from GravNN.Support.transformations import cart2sph, invert_projection
+from GravityModels.GravityModels.GravityModelBase import GravityModelBase
+from GravityModels.CelestialBodies.Planets import Earth
+from GravityModels.Support.transformations import cart2sph, invert_projection
 
 
 def get_pm_data(trajectory, gravity_file, **kwargs):
@@ -100,7 +100,7 @@ def main():
     print(np.linalg.norm(accelerations, axis=1))
     print(time.time() - start)
 
-    from GravNN.GravityModels.SphericalHarmonics import SphericalHarmonics
+    from GravityModels.GravityModels.SphericalHarmonics import SphericalHarmonics
 
     model = SphericalHarmonics(planet.sh_file, 1000)
     sh_results = model.compute_acceleration(position)

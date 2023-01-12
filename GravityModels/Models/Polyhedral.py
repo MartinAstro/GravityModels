@@ -3,12 +3,12 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import trimesh
-from GravNN.GravityModels.GravityModelBase import GravityModelBase
-from GravNN.CelestialBodies.Asteroids import Bennu, Eros
-from GravNN.GravityModels.PointMass import PointMass
+from GravityModels.GravityModels.GravityModelBase import GravityModelBase
+from GravityModels.CelestialBodies.Asteroids import Bennu, Eros
+from GravityModels.GravityModels.PointMass import PointMass
 
 from numba import jit, njit, prange
-from GravNN.Support.ProgressBar import ProgressBar
+from GravityModels.Support.ProgressBar import ProgressBar
 
 
 def get_poly_data(trajectory, obj_file, **kwargs):
@@ -392,7 +392,7 @@ def main():
 
 def test_energy_conservation():
     from scipy.integrate import solve_ivp
-    from GravNN.Support.transformations import cart2sph, invert_projection
+    from GravityModels.Support.transformations import cart2sph, invert_projection
     asteroid = Eros()
     poly_model = Polyhedral(asteroid, asteroid.obj_8k)
     def fun(x,y,IC=None):
