@@ -3,12 +3,12 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import trimesh
-from GravityModels.GravityModels.GravityModelBase import GravityModelBase
+from GravityModels.Models.GravityModelBase import GravityModelBase
 from GravityModels.CelestialBodies.Asteroids import Bennu, Eros
-from GravityModels.GravityModels.PointMass import PointMass
+from GravityModels.Models.PointMass import PointMass
 
 from numba import jit, njit, prange
-from GravityModels.Support.ProgressBar import ProgressBar
+from GravityModels.utils.ProgressBar import ProgressBar
 
 
 def get_poly_data(trajectory, obj_file, **kwargs):
@@ -343,96 +343,3 @@ class Polyhedral(GravityModelBase):
         return acc, -pot
 
 
-def main():
-    import time
-
-    start = time.time()
-    asteroid = Eros()
-    poly_model = Polyhedral(asteroid, asteroid.obj_8k)
-    print(time.time() - start)
-
-    timeList = []
-    position = np.ones((64, 3)) * 1e4  # Must be in meters
-    start = time.time()
-    print(poly_model.compute_acceleration(position))
-    stop = time.time() - start
-    timeList.append(stop)
-    print(stop)
-
-    position = np.ones((128, 3)) * 1e4  # Must be in meters
-    start = time.time()
-    poly_model.compute_acceleration(position)
-    stop = time.time() - start
-    timeList.append(stop)
-    print(stop)
-
-    position = np.ones((256, 3)) * 1e4  # Must be in meters
-    start = time.time()
-    poly_model.compute_acceleration(position)
-    stop = time.time() - start
-    timeList.append(stop)
-    print(stop)
-
-    # position = np.ones((512,3))*1E4# Must be in meters
-    # start = time.time()
-    # poly_model.compute_acceleration(position)
-    # stop = time.time() - start
-    # timeList.append(stop)
-    # print(stop)
-
-    # position = np.ones((1024,3))*1E4# Must be in meters
-    # start = time.time()
-    # poly_model.compute_acceleration(position)
-    # stop = time.time() - start
-    # timeList.append(stop)
-    # print(stop)
-
-    print(timeList)
-
-
-def test_energy_conservation():
-    from scipy.integrate import solve_ivp
-    from GravityModels.Support.transformations import cart2sph, invert_projection
-    asteroid = Eros()
-    poly_model = Polyhedral(asteroid, asteroid.obj_8k)
-    def fun(x,y,IC=None):
-        "Return the first-order system"
-        # print(x)
-        R, V = y[0:3], y[3:6]
-        r = np.linalg.norm(R)
-        a = poly_model.compute_acceleration(R.reshape((1,3)), pbar=False)
-        dxdt = np.hstack((V, a.reshape((3,))))
-        return dxdt.reshape((6,))
-    
-    T = 1000
-    state = np.array([-6.36256532e+02, -4.58656092e+04,  1.31640352e+04,  3.17126984e-01, -1.12030801e+00, -3.38751010e+00])
-
-    sol = solve_ivp(fun, [0, T], state.reshape((-1,)), t_eval=None, events=None, atol=1e-12, rtol=1e-12)
-
-    from OrbitalElements.orbitalPlotting import plot_orbit_3d
-    plot_orbit_3d(sol.y,save=False)
-    # sol = solve_ivp(fun, [0, T], state.reshape((-1,)), t_eval=None, events=None, atol=1e-14, rtol=1e-14)
-    rVec = sol.y[0:3, :]
-    vVec = sol.y[3:6, :]
-    hVec = np.cross(rVec.T, vVec.T)
-    h_norm = np.linalg.norm(hVec, axis=1)
-
-    KE = 1./2.*1*np.linalg.norm(vVec, axis=0)**2
-    U = poly_model.compute_potential(rVec.T)
-
-    energy = KE + U
-
-
-    plt.figure()
-    plt.subplot(2,1,1)
-    plt.plot(np.linspace(0, T, len(h_norm)), h_norm, label='orbit')
-    plt.subplot(2,1,2)
-    plt.plot(np.linspace(0, T, len(h_norm)), energy, label='orbit')
-    plt.show()
-
-
-    
-
-if __name__ == "__main__":
-    main()
-    # test_energy_conservation()

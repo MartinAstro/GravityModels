@@ -1,9 +1,9 @@
 import os
 
 import numpy as np
-from GravityModels.GravityModels.GravityModelBase import GravityModelBase
+from GravityModels.Models.GravityModelBase import GravityModelBase
 from GravityModels.CelestialBodies.Planets import Earth
-from GravityModels.Support.transformations import cart2sph, invert_projection
+from GravityModels.utils.transformations import cart2sph, invert_projection
 
 
 def get_pm_data(trajectory, gravity_file, **kwargs):
@@ -80,33 +80,3 @@ class PointMass(GravityModelBase):
     def compute_potential_value(self, position):
         return -self.mu / position[0]
 
-
-def main():
-    import time
-
-    start = time.time()
-    planet = Earth()
-    point_mass = PointMass(planet)
-    print(time.time() - start)
-
-    position = (
-        np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [1.0, 1.0, 1.0]]) * planet.radius
-    )  # Must be in meters
-
-    print(position)
-    start = time.time()
-    accelerations = point_mass.compute_acceleration(position)
-    print(accelerations)
-    print(np.linalg.norm(accelerations, axis=1))
-    print(time.time() - start)
-
-    from GravityModels.GravityModels.SphericalHarmonics import SphericalHarmonics
-
-    model = SphericalHarmonics(planet.sh_file, 1000)
-    sh_results = model.compute_acceleration(position)
-
-    print(sh_results)
-
-
-if __name__ == "__main__":
-    main()
