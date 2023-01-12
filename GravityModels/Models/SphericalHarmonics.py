@@ -6,7 +6,6 @@ from numba import njit
 from GravityModels.Models.GravityModelBase import GravityModelBase
 from GravityModels.Models.PinesAlgorithm import compute_acc_parallel, compute_n_matrices
 from GravityModels.utils.transformations import cart2sph
-from scipy.special import lpmn
 
 
 def make_2D_array(lis):
